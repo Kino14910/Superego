@@ -16,7 +16,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(Blueprintable)
 class SUPEREGO_API ULivingEntityAttributeSet : public UAttributeSet
 {
 	GENERATED_BODY()
