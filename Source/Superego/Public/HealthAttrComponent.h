@@ -7,6 +7,7 @@
 #include "LivingEntityAttributeSet.h"
 #include "HealthAttrComponent.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnValueChange, float, Health, float, Old);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent), Blueprintable )
 class SUPEREGO_API UHealthAttrComponent : public UActorComponent
@@ -30,4 +31,16 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UAbilitySystemComponent* AbilitySystemComponent;
+
+	void OnHealthChangedNative(const FOnAttributeChangeData& Data);
+	void OnMaxHealthChangedNative(const FOnAttributeChangeData& Data);
+
+	UPROPERTY(BlueprintAssignable)
+	FOnValueChange OnHealthChanged;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnValueChange OnDeath;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnValueChange OnMaxHealthChanged;
 };

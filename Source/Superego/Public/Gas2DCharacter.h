@@ -23,4 +23,6 @@ public:
 public:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UAbilitySystemComponent* AbilitySystemComponent;
+
+	virtual void BeginPlay() override;
 };

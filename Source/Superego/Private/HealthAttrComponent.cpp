@@ -24,6 +24,10 @@ void UHealthAttrComponent::BeginPlay()
 	if (AbilitySystemComponent)
 	{
 		AbilitySystemComponent->AddAttributeSetSubobject(AttrSet);
+		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AttrSet->GetHealthAttribute())
+			.AddUObject(this, &UHealthAttrComponent::OnHealthChangedNative);
+		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AttrSet->GetMaxHealthAttribute())
+			.AddUObject(this, &UHealthAttrComponent::OnMaxHealthChangedNative);
 	}
 }
 
@@ -36,3 +40,17 @@ void UHealthAttrComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	// ...
 }
 
+void UHealthAttrComponent::OnHealthChangedNative(const FOnAttributeChangeData& Data)
+{
+	OnHealthChanged.Broadcast(Data.NewValue, Data.OldValue);
+
+	if (Data.NewValue <= 0)
+	{
+		OnDeath.Broadcast(Data.NewValue, Data.OldValue);
+	}
+}
+
+void UHealthAttrComponent::OnMaxHealthChangedNative(const FOnAttributeChangeData& Data)
+{
+	OnMaxHealthChanged.Broadcast(Data.NewValue, Data.OldValue);
+}

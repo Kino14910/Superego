@@ -7,3 +7,8 @@ AGas2DCharacter::AGas2DCharacter()
 {
 	AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
 }
+
+void AGas2DCharacter::BeginPlay()
+{
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+}
