@@ -10,5 +10,6 @@ AGas2DCharacter::AGas2DCharacter()
 
 void AGas2DCharacter::BeginPlay()
 {
+	Super::BeginPlay();
 	AbilitySystemComponent->InitAbilityActorInfo(this, this);
 }
