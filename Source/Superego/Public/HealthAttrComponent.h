@@ -32,8 +32,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UAbilitySystemComponent* AbilitySystemComponent;
 
-	void OnHealthChangedNative(const FOnAttributeChangeData& Data);
-	void OnMaxHealthChangedNative(const FOnAttributeChangeData& Data);
+	void OnHealthChangedNative(const FOnAttributeChangeData& Data) const;
+	void OnMaxHealthChangedNative(const FOnAttributeChangeData& Data) const;
 
 	UPROPERTY(BlueprintAssignable)
 	FOnValueChange OnHealthChanged;

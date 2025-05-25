@@ -40,7 +40,7 @@ void UHealthAttrComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	// ...
 }
 
-void UHealthAttrComponent::OnHealthChangedNative(const FOnAttributeChangeData& Data)
+void UHealthAttrComponent::OnHealthChangedNative(const FOnAttributeChangeData& Data) const
 {
 	OnHealthChanged.Broadcast(Data.NewValue, Data.OldValue);
 
@@ -50,7 +50,7 @@ void UHealthAttrComponent::OnHealthChangedNative(const FOnAttributeChangeData& D
 	}
 }
 
-void UHealthAttrComponent::OnMaxHealthChangedNative(const FOnAttributeChangeData& Data)
+void UHealthAttrComponent::OnMaxHealthChangedNative(const FOnAttributeChangeData& Data) const
 {
 	OnMaxHealthChanged.Broadcast(Data.NewValue, Data.OldValue);
 }
